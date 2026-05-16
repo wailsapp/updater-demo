@@ -1,7 +1,8 @@
 # updater-demo
 
 Release target for the Wails v3 updater example
-([`v3/examples/updater`](https://github.com/wailsapp/wails/tree/master/v3/examples/updater)).
+([`v3/examples/updater`](https://github.com/wailsapp/wails/pull/5449) —
+the feature is still on a branch; this link follows the PR).
 Each tagged release of this repository ships pre-built binaries for
 darwin/arm64, linux/amd64, and windows/amd64 plus a `SHA256SUMS`
 sidecar, so the example can demonstrate the full update flow

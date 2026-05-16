@@ -1,0 +1,10 @@
+/bin/
+/build/
+/dist/
+*.app/
+*.exe
+*.zip
+*.tar.gz
+SHA256SUMS
+.DS_Store
+node_modules/

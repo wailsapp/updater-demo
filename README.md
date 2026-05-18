@@ -3,10 +3,15 @@
 Release target for the Wails v3 updater example
 ([`v3/examples/updater`](https://github.com/wailsapp/wails/pull/5449) —
 the feature is still on a branch; this link follows the PR).
-Each tagged release of this repository ships pre-built binaries for
-darwin/arm64, linux/amd64, and windows/amd64 plus a `SHA256SUMS`
-sidecar, so the example can demonstrate the full update flow
-end-to-end against a real GitHub release.
+Each tagged release of this repository ships pre-built **bare**
+binaries for darwin/arm64, linux/amd64, and windows/amd64 plus a
+`SHA256SUMS` sidecar, so the example can demonstrate the full
+update flow end-to-end against a real GitHub release.
+
+Bare, not archived. The updater renames the downloaded asset onto
+the running binary's path; if the asset were a `.tar.gz` or `.zip`
+the rename would land a compressed file in place of the executable
+and exec() would fail.
 
 > This repo is **not** a starter template. For that, run `wails3 init`.
 > This is the artifact source the framework's updater example downloads
@@ -45,11 +50,13 @@ is transparent).
 
 ## Platform notes
 
-- **darwin**: plain `tar.gz` of the binary, not a `.app` bundle. The
-  updater's helper does a direct `exec.Command(target)` on swap, so
-  the runtime form matches whatever the calling app is — keeping
-  this a plain binary avoids `.app`-vs-binary swap-type mismatches.
+- **darwin**: bare binary, not a `.app` bundle. The updater's
+  helper does a direct `exec.Command(target)` on swap, and the
+  example runs as a plain binary too — keeping both sides as plain
+  binaries avoids `.app`-vs-binary swap-type mismatches.
 - **linux**: depends on `libgtk-3` and `libwebkit2gtk-4.1` at runtime.
+  The updater preserves the original target's mode (incl. `+x`)
+  after the swap so the relaunched binary runs.
 - **windows**: built with `-H windowsgui` so the binary has no
   console window when launched. Requires WebView2 Runtime on the
   user's machine (preinstalled on Win10 1903+).

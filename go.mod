@@ -2,7 +2,7 @@ module github.com/wailsapp/updater-demo
 
 go 1.26.2
 
-require github.com/wailsapp/wails/v3 v3.0.0-alpha.91.0.20260515212724-2f47e04dbfff
+require github.com/wailsapp/wails/v3 v3.0.0-alpha.92.0.20260518110701-c894c01b6ea4
 
 require (
 	dario.cat/mergo v1.0.2 // indirect
